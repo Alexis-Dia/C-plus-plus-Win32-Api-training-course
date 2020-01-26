@@ -178,8 +178,15 @@ BOOL CALLBACK WriteFile(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 							if (hwndText == INVALID_HANDLE_VALUE)
 								MessageBox(hwndMain, "Ошибка", "Ошибка", MB_OK | MB_ICONWARNING);
 					
+							Int64 = GetDlgItemInt(hwnd, IDC_EDIT4, NULL, TRUE);
+
+							Word = GetDlgItemInt(hwnd, IDC_EDIT5, NULL, TRUE);
+
+							Dword = GetDlgItemInt(hwnd, IDC_EDIT6, NULL, TRUE);
+
 							for (i = 0; i < 12; i++)
 							{
+								HWND F = GetDlgItem(hwnd, IDC_EDIT[i]);
 								size = GetWindowTextLength(GetDlgItem(hwnd, IDC_EDIT[i]));
 								GetWindowText(GetDlgItem(hwnd, IDC_EDIT[i]), Buffer, size + 1);
 								WriteFile(hwndText, Buffer, size, &size, NULL);

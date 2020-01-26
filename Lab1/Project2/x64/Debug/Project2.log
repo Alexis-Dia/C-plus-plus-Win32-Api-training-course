@@ -1,11 +1,11 @@
 ﻿  Lab1.cpp
-E:\Bntu\ win32apic++\C-win-api-training-course\Lab1\Project2\Lab1.cpp(25,29): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
-E:\Bntu\ win32apic++\C-win-api-training-course\Lab1\Project2\Lab1.cpp(26,31): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
-E:\Bntu\ win32apic++\C-win-api-training-course\Lab1\Project2\Lab1.cpp(59,12): warning C4244: 'return': conversion from 'WPARAM' to 'int', possible loss of data
-E:\Bntu\ win32apic++\C-win-api-training-course\Lab1\Project2\Lab1.cpp(70,6): warning C4101: 'hdc': unreferenced local variable
-E:\Bntu\ win32apic++\C-win-api-training-course\Lab1\Project2\Lab1.cpp(69,14): warning C4101: 'ps': unreferenced local variable
-E:\Bntu\ win32apic++\C-win-api-training-course\Lab1\Project2\Lab1.cpp(110,27): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
-E:\Bntu\ win32apic++\C-win-api-training-course\Lab1\Project2\Lab1.cpp(111,29): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
-  Lab2my.cpp
-  Generating Code...
-  Project2.vcxproj -> E:\Bntu\ win32apic++\C-win-api-training-course\Lab1\x64\Debug\Labs.exe
+  Lab1My.cpp
+C:\Users\Alex\Source\Repos\Alexis-Dk\C-win-api-training-course\Lab1\Project2\Lab1My.cpp(28,29): warning C4302: приведение типов: усечение из "LPSTR" к "WORD"
+C:\Users\Alex\Source\Repos\Alexis-Dk\C-win-api-training-course\Lab1\Project2\Lab1My.cpp(29,31): warning C4302: приведение типов: усечение из "LPSTR" к "WORD"
+C:\Users\Alex\Source\Repos\Alexis-Dk\C-win-api-training-course\Lab1\Project2\Lab1My.cpp(62,12): warning C4244: return: преобразование "WPARAM" в "int", возможна потеря данных
+C:\Users\Alex\Source\Repos\Alexis-Dk\C-win-api-training-course\Lab1\Project2\Lab1My.cpp(73,6): warning C4101: hdc: неиспользованная локальная переменная
+C:\Users\Alex\Source\Repos\Alexis-Dk\C-win-api-training-course\Lab1\Project2\Lab1My.cpp(72,14): warning C4101: ps: неиспользованная локальная переменная
+C:\Users\Alex\Source\Repos\Alexis-Dk\C-win-api-training-course\Lab1\Project2\Lab1My.cpp(127,27): warning C4302: приведение типов: усечение из "LPSTR" к "WORD"
+C:\Users\Alex\Source\Repos\Alexis-Dk\C-win-api-training-course\Lab1\Project2\Lab1My.cpp(128,29): warning C4302: приведение типов: усечение из "LPSTR" к "WORD"
+  Создание кода...
+  Project2.vcxproj -> C:\Users\Alex\Source\Repos\Alexis-Dk\C-win-api-training-course\Lab1\x64\Debug\Labs.exe
