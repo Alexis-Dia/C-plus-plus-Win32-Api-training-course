@@ -165,8 +165,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	PAINTSTRUCT ps;
 	HDC hdc;
 	TCHAR cmdproc1[500];
-	TCHAR cmdproc2[] = L"C:\\Users\\Alex\\Desktop\\c++ win32api лабы from Vladislav\\7 работа\\Process 3\\Debug\\Process 3.exe";
-	TCHAR cmdproc3[] = L"C:\\Users\\Alex\\Desktop\\c++ win32api лабы from Vladislav\\7 работа\\Process 2\\Debug\\Process 2.exe";
+	TCHAR cmdproc2[] = L"C:\\Users\\Alex\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\Lab7\\7 работа\\Process 3\\Debug\\Process 3.exe";
+	TCHAR cmdproc3[] = L"C:\\Users\\Alex\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\Lab7\\7 работа\\Process 2\\Debug\\Process 2.exe";
 	int j = 0;
 	char envVal[10];
 	
@@ -186,10 +186,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 
 		case IDB_TEXTFILE:
-			hFile = CreateFile(L"C:\\Users\\Alex\\Desktop\\c++ win32api лабы from Vladislav\\7 работа\\Laba 7\\file.txt", GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+			hFile = CreateFile(L"C:\\Users\\Alex\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\Lab7\\7 работа\\Laba 7\\file.txt", GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
 					&sa, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-			j = swprintf_s(cmdproc1, 500, L"%s", L"\"C:\\Users\\Alex\\Desktop\\c++ win32api лабы from Vladislav\\7 работа\\Process 2\\Debug\\Process 2.exe\" ");
+			j = swprintf_s(cmdproc1, 500, L"%s", L"\"C:\\Users\\Alex\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\Lab7\\7 работа\\Process 2\\Debug\\Process 2.exe\" ");
 			swprintf_s(cmdproc1 + j, 500 - j, L"%d", (int)hFile);
 
 			CreateProcess(NULL, cmdproc3, NULL, NULL, TRUE, 0, NULL, NULL, &si, &pi);
@@ -201,7 +201,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 
 		case IDB_EXEFILE:
-			hExe = CreateFile(L"C:\\Users\\Alex\\Desktop\\c++ win32api лабы from Vladislav\\7 работа\\Laba 7\\V25.exe", GENERIC_READ, FILE_SHARE_READ,
+			hExe = CreateFile(L"C:\\Users\\Alex\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\Lab7\\7 работа\\Laba 7\\Process 3.exe", GENERIC_READ, FILE_SHARE_READ,
 					&sa, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 			if (hExe == INVALID_HANDLE_VALUE)
 				MessageBox(hWnd, L"Файл не может быть открыт/создан!!", L"Error", MB_OK | MB_ICONERROR);
