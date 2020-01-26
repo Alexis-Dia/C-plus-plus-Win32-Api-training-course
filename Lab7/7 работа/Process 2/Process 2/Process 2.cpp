@@ -169,7 +169,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			// должно быть с k
 			//k = _wtoi(pArgv[1]);
 			//hFile = (HANDLE)k;
-			hFile = CreateFile(L"C:\\Users\\Alex\\Desktop\\c++ win32api лабы from Vladislav\\7 работа\\Laba 7\\file.txt", GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+			hFile = CreateFile(L"C:\\Users\\Alex\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\Lab7\\7 работа\\Laba 7\\file.txt", GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
 				&sa, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
 			SetDlgItemInt(hWnd, IDE_EDIT1, 1000, FALSE); // вместо 1000 - k
