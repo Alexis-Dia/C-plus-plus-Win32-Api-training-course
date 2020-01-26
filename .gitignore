@@ -32,3 +32,7 @@
 *.app
 
 *.opendb
+
+/build/
+Debug/
+Release/
