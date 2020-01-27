@@ -4,6 +4,8 @@
 #include "framework.h"
 #include "WindowsProject1.h"
 #include "resource.h"
+#include "psapi.h"
+#include <stdio.h>
 
 #define MAX_LOADSTRING 100
 
@@ -147,6 +149,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     HANDLE hFile;
     TCHAR cmdproc2[] = L"C:\\Users\\adruzik\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\Lab7\\7 работа\\Process 2\\Debug\\Process 2.exe";
+    TCHAR notepad[] = L"Notepad";
     static HANDLE hThread;
     DWORD dTs;
     switch (message)
@@ -198,7 +201,44 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 ZeroMemory(&si, sizeof(si));
                 si.cb = sizeof(si);
                 ZeroMemory(&pi, sizeof(pi));
-                CreateProcess(NULL, cmdproc2, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
+                CreateProcess(NULL, notepad, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
+                SetPriorityClass(GetCurrentProcess(), DETACHED_PROCESS);
+
+                DWORD dwProcessPriority;
+                dwProcessPriority = GetPriorityClass(GetCurrentProcess());
+
+                if (dwProcessPriority > 0) {
+                    if (dwProcessPriority & REALTIME_PRIORITY_CLASS) {
+                        printf("Highest priority process.\n");
+                    }
+                    if (dwProcessPriority & HIGH_PRIORITY_CLASS) {
+                        printf("High priority process.\n");
+                    }
+                    if (dwProcessPriority & NORMAL_PRIORITY_CLASS) {
+                        printf("Normal priority process.\n");
+                    }
+                    if (dwProcessPriority & IDLE_PRIORITY_CLASS) {
+                        printf("Background process.\n");
+                    }
+                }
+
+                DWORD aProcesses[1024], cbNeeded, cProcesses;
+                unsigned int i;
+
+                if (!EnumProcesses(aProcesses, sizeof(aProcesses), &cbNeeded))
+                {
+                    return 1;
+                }
+                cProcesses = cbNeeded / sizeof(DWORD);
+                for (i = 0; i < cProcesses; i++)
+                {
+                    if (aProcesses[i] != 0)
+                    {
+                        TCHAR a[] = L"";
+                    }
+                }
+                        
+
                 break;
             case ID_THREAD_CREATETHREAD:
                 hThread = CreateThread(NULL, 0, TrackBarThreadOne, 
