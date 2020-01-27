@@ -132,7 +132,7 @@ DWORD WINAPI TrackBarThreadOne(PVOID pvParam)
     //k = _wtoi(pArgv[1]);
     //hFile = (HANDLE)k;
     
-    HANDLE hFile = CreateFile(L"C:\\Users\\Alex\\Desktop\\c++ win32api лабы from Vladislav\\7 работа\\Laba 7\\file.txt", GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+    HANDLE hFile = CreateFile(L"C:\\Users\\adruzik\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\Lab7\\7 работа\\Laba 7\\file.txt", GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
         &sa, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
     //SetDlgItemInt(hWnd, IDE_EDIT1, 1000, FALSE); // вместо 1000 - k
@@ -146,7 +146,7 @@ DWORD WINAPI TrackBarThreadOne(PVOID pvParam)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     HANDLE hFile;
-    TCHAR cmdproc2[] = L"C:\\Users\\Alex\\Desktop\\c++ win32api лабы from Vladislav\\7 работа\\Process 2\\Debug\\Process 2.exe";
+    TCHAR cmdproc2[] = L"C:\\Users\\adruzik\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\Lab7\\7 работа\\Process 2\\Debug\\Process 2.exe";
     static HANDLE hThread;
     DWORD dTs;
     switch (message)
@@ -181,7 +181,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 break;
             case ID_FILE_READ:
 
-                hFile = CreateFile(L"C:\\Users\\Alex\\Desktop\\file1.txt", GENERIC_READ | GENERIC_WRITE,
+                hFile = CreateFile(L"C:\\Users\\adruzik\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\Lab7\\7 работа\\Laba 7\\file.txt", GENERIC_READ | GENERIC_WRITE,
                     FILE_SHARE_READ | FILE_SHARE_READ,
                     &sa, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
