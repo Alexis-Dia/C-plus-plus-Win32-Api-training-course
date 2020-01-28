@@ -248,6 +248,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALOG1), hWnd, OpenDialog);
                 //DialogBox(hInst, L"DIALOG_OPEN_FILE", hWnd, (DLGPROC)OpenDialog);
                 break;
+            case ID_CHANGEWINDOWTITLE_CHANGE:
+                SetWindowText(hWnd, aaa);
+                break;
             case ID_THREAD_CREATETHREAD:
                 hThread = CreateThread(NULL, 0, TrackBarThreadOne, 
 								NULL, 0, &dTs);
