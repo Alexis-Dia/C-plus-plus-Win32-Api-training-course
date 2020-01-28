@@ -15,12 +15,14 @@ WCHAR szTitle[MAX_LOADSTRING];                  // Текст строки за�
 WCHAR szWindowClass[MAX_LOADSTRING];            // имя класса главного окна
 SECURITY_ATTRIBUTES sa;
 HWND hWnd;
+WCHAR aaa[MAX_LOADSTRING] = L"GHJK";
 
 // Отправить объявления функций, включенных в этот модуль кода:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+BOOL CALLBACK OpenDialog(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -237,8 +239,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                         TCHAR a[] = L"";
                     }
                 }
-                        
-
+                break;
+            case ID_SETEDITANDLIST_CHANGEEDIT:
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALOG1), hWnd, OpenDialog);
+                //DialogBox(hInst, L"DIALOG_OPEN_FILE", hWnd, (DLGPROC)OpenDialog);
+                break;
+            case ID_SETEDITANDLIST_CHANGELIST:
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALOG1), hWnd, OpenDialog);
+                //DialogBox(hInst, L"DIALOG_OPEN_FILE", hWnd, (DLGPROC)OpenDialog);
                 break;
             case ID_THREAD_CREATETHREAD:
                 hThread = CreateThread(NULL, 0, TrackBarThreadOne, 
@@ -284,4 +292,36 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     }
     return (INT_PTR)FALSE;
+}
+
+BOOL CALLBACK OpenDialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    //int IDC_EDIT[12] = { IDC_EDIT1, IDC_EDIT2};
+
+    switch (message)
+    {
+    case WM_INITDIALOG:
+
+        HWND hEdit;
+        hEdit = GetDlgItem(hwnd, IDC_EDIT2);
+        SetDlgItemText(hwnd, IDC_EDIT2, L"561");
+
+        HWND hList;
+        hList = GetDlgItem(hwnd, IDC_LIST1);
+        SendMessage(hList, LB_ADDSTRING, 0, (LPARAM)L"name");
+
+        SetWindowText(hWnd, aaa);
+
+        return TRUE;
+
+    case WM_COMMAND:
+        if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+        {
+            EndDialog(hwnd, LOWORD(wParam));
+            return (INT_PTR)TRUE;
+        }
+        break;
+
+    }
+    return 0;
 }
