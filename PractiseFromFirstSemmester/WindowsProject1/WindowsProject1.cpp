@@ -158,13 +158,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     int end;
     char BinFile[200] = "";
     char buf[1000];
-    int i;
-    float f;
-    double d;
-    FLOAT f1;
+    //int i;
+    //float f;
+    //double d;
+    //FLOAT f1;
     LONG l;
     char q[200] = "";
     char BinnFile[200] = "";
+    HANDLE hwndBin;
     switch (message)
     {
     case WM_COMMAND:
@@ -187,7 +188,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     &sa, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
                 //SetDlgItemInt(hWnd, IDE_EDIT1, 1000, FALSE); // вместо 1000 - k
                 SetFilePointer(hFile, 0, NULL, FILE_END);
-                
+
                 WriteFile(hFile, "Alexey\r\n", strlen("Alexey\r\n"), &NumB, NULL);
                 WriteFile(hFile, "Druzik\r\n", strlen("Druzik\r\n"), &NumB, NULL);
                 MessageBox(hWnd, L"Запись в файл прошла успешно!!!", L"Information", MB_OK | MB_ICONINFORMATION);
@@ -261,59 +262,61 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 SetWindowText(hWnd, aaa);
                 break;
             case ID_THREAD_CREATETHREAD:
-                hThread = CreateThread(NULL, 0, TrackBarThreadOne, 
-								NULL, 0, &dTs);
+                hThread = CreateThread(NULL, 0, TrackBarThreadOne,
+                    NULL, 0, &dTs);
                 break;
             case ID_WRITEDIFFERENTTYPESTOFILE_WRITE:
-                HANDLE hwndBin;
+            {
                 hwndBin = CreateFile(L"C:\\Users\\adruzik\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\file.bin", GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0);
-                if (hwndBin == INVALID_HANDLE_VALUE)
-                    MessageBox(hWnd, L"Ошибка", L"Ошибка", MB_OK | MB_ICONWARNING);
-                DWORD size;
+                //if (hwndBin == INVALID_HANDLE_VALUE) {
+                //    MessageBox(hWnd, L"Ошибка", L"Ошибка", MB_OK | MB_ICONWARNING);
+                //}
+                //DWORD size;
 
-                i = 100;
-                f = 1.123;
-                d = 1.000;
-                f1 = 1.1;
+                //i = 100;
+                //f = 1.123;
+                //d = 1.000;
+                //f1 = 1.1;
                 l = 300;
 
                 //WriteFile(hwndBin, &i, sizeof(i), &dwBytes, NULL);
                 //WriteFile(hwndBin, &f, sizeof(f), &dwBytes, NULL);
                 //WriteFile(hwndBin, &d, sizeof(d), &dwBytes, NULL);
                 //WriteFile(hwndBin, &f1, sizeof(f1), &dwBytes, NULL);
-                WriteFile(hwndBin, &l, sizeof(l), &dwBytes, NULL);
+                WriteFile(hwndBin, &l, sizeof(LONG), &dwBytes, NULL);
 
                 CloseHandle(hwndBin);
+            }
                 break;
-            }
-        }
-        case ID_READDIFFERENTTYPESFROMFILE_READ:
-            HANDLE hwndBin;
-            hwndBin = CreateFile(L"C:\\Users\\adruzik\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\file.bin", GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0);
-            end = GetFileSize(hwndBin, NULL);
-            SetFilePointer(hwndBin, 0, NULL, FILE_BEGIN);
-            ReadFile(hwndBin, BinFile, end, &dwBytes, NULL);
-            SetFilePointer(hwndBin, 0, NULL, FILE_BEGIN);
-
-            ReadFile(hwndBin, &l, sizeof(l), &dwBytes, NULL);
-            sprintf_s(q, "%i ", l);
-            strcat_s(BinnFile, q);
-            break;
-        case WM_PAINT:
+            case ID_READDIFFERENTTYPESFROMFILE_READ:
             {
-                PAINTSTRUCT ps;
-                HDC hdc = BeginPaint(hWnd, &ps);
-                // TODO: Добавьте сюда любой код прорисовки, использующий HDC...
-                EndPaint(hWnd, &ps);
+                hwndBin = CreateFile(L"C:\\Users\\adruzik\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\file.bin", GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0);
+                end = GetFileSize(hwndBin, NULL);
+                SetFilePointer(hwndBin, 0, NULL, FILE_BEGIN);
+                ReadFile(hwndBin, BinFile, end, &dwBytes, NULL);
+                SetFilePointer(hwndBin, 0, NULL, FILE_BEGIN);
+
+                ReadFile(hwndBin, &l, sizeof(LONG), &dwBytes, NULL);
+                sprintf_s(q, "%i ", l);
+                strcat_s(BinnFile, q);
             }
-            break;
-        case WM_DESTROY:
-            PostQuitMessage(0);
-            break;
-        default:
-            return DefWindowProc(hWnd, message, wParam, lParam);
-        }
-        return 0;
+                break;
+            case WM_PAINT:
+                {
+                    PAINTSTRUCT ps;
+                    HDC hdc = BeginPaint(hWnd, &ps);
+                    // TODO: Добавьте сюда любой код прорисовки, использующий HDC...
+                    EndPaint(hWnd, &ps);
+                }
+                break;
+            case WM_DESTROY:
+                PostQuitMessage(0);
+                break; 
+            } }
+            default:
+                return DefWindowProc(hWnd, message, wParam, lParam);
+            }
+            return 0;
 }
 
 // Обработчик сообщений для окна "О программе".
