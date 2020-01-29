@@ -22,7 +22,7 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
-BOOL CALLBACK OpenDialog(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK OpenDialog(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -297,7 +297,7 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     return (INT_PTR)FALSE;
 }
 
-BOOL CALLBACK OpenDialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK OpenDialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     //int IDC_EDIT[12] = { IDC_EDIT1, IDC_EDIT2};
 
@@ -315,7 +315,7 @@ BOOL CALLBACK OpenDialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         SetWindowText(hWnd, aaa);
 
-        return TRUE;
+        return (INT_PTR)TRUE;
 
     case WM_COMMAND:
         if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
@@ -324,7 +324,6 @@ BOOL CALLBACK OpenDialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
             return (INT_PTR)TRUE;
         }
         break;
-
     }
-    return 0;
+    return (INT_PTR)FALSE;
 }
