@@ -158,11 +158,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     int end;
     char BinFile[200] = "";
     char buf[1000];
-    //int i;
-    //float f;
-    //double d;
-    //FLOAT f1;
-    LONG l;
+    int dataInt;
+    float dataFloatPrimitive;
+    double dataDoublePrimitive;
+    FLOAT dataFloat;
+    LONG dataLong;
     char q[200] = "";
     char BinnFile[200] = "";
     HANDLE hwndBin;
@@ -265,40 +265,64 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 hThread = CreateThread(NULL, 0, TrackBarThreadOne,
                     NULL, 0, &dTs);
                 break;
-            case ID_WRITEDIFFERENTTYPESTOFILE_WRITE:
+            case ID_WRITEDIFFERENTTYPESTOBINFILE_WRITE:
             {
-                hwndBin = CreateFile(L"C:\\Users\\adruzik\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\file.bin", GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0);
+                hwndBin = CreateFile(L"C:\\Users\\Alex\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\file.bin", GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0);
                 //if (hwndBin == INVALID_HANDLE_VALUE) {
                 //    MessageBox(hWnd, L"Ошибка", L"Ошибка", MB_OK | MB_ICONWARNING);
                 //}
                 //DWORD size;
 
-                //i = 100;
-                //f = 1.123;
-                //d = 1.000;
-                //f1 = 1.1;
-                l = 300;
+                //int dataInt;
+                //float dataFloatPrimitive;
+                //double dataDoublePrimitive;
+                //FLOAT dataFloat;
+                //LONG dataLong;
 
-                //WriteFile(hwndBin, &i, sizeof(i), &dwBytes, NULL);
-                //WriteFile(hwndBin, &f, sizeof(f), &dwBytes, NULL);
-                //WriteFile(hwndBin, &d, sizeof(d), &dwBytes, NULL);
-                //WriteFile(hwndBin, &f1, sizeof(f1), &dwBytes, NULL);
-                WriteFile(hwndBin, &l, sizeof(LONG), &dwBytes, NULL);
+                dataInt = 100;
+                dataFloatPrimitive = 1.123;
+                dataDoublePrimitive = 1.000;
+                dataFloat = 1.1;
+                dataLong = 300;
+
+                WriteFile(hwndBin, &dataInt, sizeof(int), &dwBytes, NULL);
+                WriteFile(hwndBin, &dataFloatPrimitive, sizeof(float), &dwBytes, NULL);
+                WriteFile(hwndBin, &dataDoublePrimitive, sizeof(double), &dwBytes, NULL);
+                WriteFile(hwndBin, &dataFloat, sizeof(FLOAT), &dwBytes, NULL);
+                WriteFile(hwndBin, &dataLong, sizeof(LONG), &dwBytes, NULL);
 
                 CloseHandle(hwndBin);
             }
                 break;
-            case ID_READDIFFERENTTYPESFROMFILE_READ:
+            case ID_READDIFFERENTTYPESFROMBINFILE_READ:
             {
-                hwndBin = CreateFile(L"C:\\Users\\adruzik\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\file.bin", GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0);
+                hwndBin = CreateFile(L"C:\\Users\\Alex\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\file.bin", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, NULL, NULL);
                 end = GetFileSize(hwndBin, NULL);
                 SetFilePointer(hwndBin, 0, NULL, FILE_BEGIN);
                 ReadFile(hwndBin, BinFile, end, &dwBytes, NULL);
                 SetFilePointer(hwndBin, 0, NULL, FILE_BEGIN);
 
-                ReadFile(hwndBin, &l, sizeof(LONG), &dwBytes, NULL);
-                sprintf_s(q, "%i ", l);
+                ReadFile(hwndBin, &dataInt, sizeof(int), &dwBytes, NULL);
+                sprintf_s(q, "%i ", dataInt);
                 strcat_s(BinnFile, q);
+
+                ReadFile(hwndBin, &dataFloatPrimitive, sizeof(float), &dwBytes, NULL);
+                sprintf_s(q, "%.2f ", dataFloatPrimitive);
+                strcat_s(BinnFile, q);
+
+                ReadFile(hwndBin, &dataDoublePrimitive, sizeof(double), &dwBytes, NULL);
+                sprintf_s(q, "%.2f ", dataDoublePrimitive);
+                strcat_s(BinnFile, q);
+
+                ReadFile(hwndBin, &dataFloat, sizeof(FLOAT), &dwBytes, NULL);
+                sprintf_s(q, "%.2f ", dataFloat);
+                strcat_s(BinnFile, q);
+
+                ReadFile(hwndBin, &dataLong, sizeof(LONG), &dwBytes, NULL);
+                sprintf_s(q, "%d ", dataLong);
+                strcat_s(BinnFile, q);
+
+                CloseHandle(hwndBin);
             }
                 break;
             case WM_PAINT:
