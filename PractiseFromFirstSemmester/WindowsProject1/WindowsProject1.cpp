@@ -16,6 +16,8 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // имя класса глав�
 SECURITY_ATTRIBUTES sa;
 HWND hWnd;
 WCHAR aaa[MAX_LOADSTRING] = L"GHJK";
+LPCTSTR strGlobal = L"";
+LPARAM strListGlobal = (LPARAM)L"";
 
 // Отправить объявления функций, включенных в этот модуль кода:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -152,6 +154,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     HANDLE hFile;
     TCHAR cmdproc2[] = L"C:\\Users\\adruzik\\Source\\Repos\\Alexis-Dk\\C-win-api-training-course\\Lab7\\7 работа\\Process 2\\Debug\\Process 2.exe";
     TCHAR notepad[] = L"Notepad";
+    TCHAR paint[] = L"C:\\Windows\\system32\\mspaint.exe";
     static HANDLE hThread;
     DWORD dTs;
     DWORD dwBytes;
@@ -205,7 +208,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 ReadFile(hFile, buf, size, &NumB, NULL);
                 buf[size] = '\0';
                 MessageBoxA(hWnd, buf, "Information", MB_OK | MB_ICONINFORMATION);
-                //SetDlgItemTextA(hWnd, IDC_EDIT1, buf);
+                //SetDlgItemTextA(hWnd, IDC_EDIT1, buf);//
                 break;
             case ID_PROCESS_CREATE:
                 STARTUPINFO si;
@@ -213,7 +216,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 ZeroMemory(&si, sizeof(si));
                 si.cb = sizeof(si);
                 ZeroMemory(&pi, sizeof(pi));
-                CreateProcess(NULL, notepad, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
+                CreateProcess(NULL, paint, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
                 SetPriorityClass(GetCurrentProcess(), DETACHED_PROCESS);
 
                 DWORD dwProcessPriority;
@@ -251,10 +254,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 }
                 break;
             case ID_SETEDITANDLIST_CHANGEEDIT:
+                strGlobal = L"123";
+                strListGlobal = (LPARAM)L"Line1";
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALOG1), hWnd, OpenDialog);
                 //DialogBox(hInst, L"DIALOG_OPEN_FILE", hWnd, (DLGPROC)OpenDialog);
                 break;
             case ID_SETEDITANDLIST_CHANGELIST:
+                strGlobal = L"346";
+                strListGlobal = (LPARAM)L"Line2";
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALOG1), hWnd, OpenDialog);
                 //DialogBox(hInst, L"DIALOG_OPEN_FILE", hWnd, (DLGPROC)OpenDialog);
                 break;
@@ -373,11 +380,11 @@ INT_PTR CALLBACK OpenDialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 
         HWND hEdit;
         hEdit = GetDlgItem(hwnd, IDC_EDIT2);
-        SetDlgItemText(hwnd, IDC_EDIT2, L"561");
+        SetDlgItemText(hwnd, IDC_EDIT2, strGlobal);
 
         HWND hList;
         hList = GetDlgItem(hwnd, IDC_LIST1);
-        SendMessage(hList, LB_ADDSTRING, 0, (LPARAM)L"name");
+        SendMessage(hList, LB_ADDSTRING, 0, strListGlobal);
 
         SetWindowText(hWnd, aaa);
 
