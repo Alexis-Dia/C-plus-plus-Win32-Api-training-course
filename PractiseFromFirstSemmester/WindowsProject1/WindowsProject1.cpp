@@ -387,7 +387,7 @@ INT_PTR CALLBACK OpenDialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
         hList = GetDlgItem(hwnd, IDC_LIST1);
         SendMessage(hList, LB_ADDSTRING, 0, strListGlobal);
 
-        SetWindowText(hWnd, secondTitleText);
+        SetWindowText(hwnd, secondTitleText);
 
         return (INT_PTR)TRUE;
 
