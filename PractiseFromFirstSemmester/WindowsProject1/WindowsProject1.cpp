@@ -15,7 +15,8 @@ WCHAR szTitle[MAX_LOADSTRING];                  // Текст строки за�
 WCHAR szWindowClass[MAX_LOADSTRING];            // имя класса главного окна
 SECURITY_ATTRIBUTES sa;
 HWND hWnd;
-WCHAR aaa[MAX_LOADSTRING] = L"GHJK";
+WCHAR mainTitleText[MAX_LOADSTRING] = L"Custom main titile";
+WCHAR secondTitleText[MAX_LOADSTRING] = L"Second dialog title";
 LPCTSTR strGlobal = L"";
 LPARAM strListGlobal = (LPARAM)L"";
 
@@ -266,7 +267,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 //DialogBox(hInst, L"DIALOG_OPEN_FILE", hWnd, (DLGPROC)OpenDialog);
                 break;
             case ID_CHANGEWINDOWTITLE_CHANGE:
-                SetWindowText(hWnd, aaa);
+                SetWindowText(hWnd, mainTitleText);
                 break;
             case ID_THREAD_CREATETHREAD:
                 hThread = CreateThread(NULL, 0, TrackBarThreadOne,
@@ -386,7 +387,7 @@ INT_PTR CALLBACK OpenDialog(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
         hList = GetDlgItem(hwnd, IDC_LIST1);
         SendMessage(hList, LB_ADDSTRING, 0, strListGlobal);
 
-        SetWindowText(hWnd, aaa);
+        SetWindowText(hWnd, secondTitleText);
 
         return (INT_PTR)TRUE;
 
