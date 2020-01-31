@@ -6,6 +6,8 @@
 #include "resource.h"
 #include "psapi.h"
 #include <stdio.h>
+#include <vector>
+#include <string>  
 
 #define MAX_LOADSTRING 100
 
@@ -19,6 +21,7 @@ WCHAR mainTitleText[MAX_LOADSTRING] = L"Custom main titile";
 WCHAR secondTitleText[MAX_LOADSTRING] = L"Second dialog title";
 LPCTSTR strGlobal = L"";
 LPARAM strListGlobal = (LPARAM)L"";
+int vector[5] = {16, 2, 77, 40, 12071};
 
 // Отправить объявления функций, включенных в этот модуль кода:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -331,6 +334,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 strcat_s(BinnFile, q);
 
                 CloseHandle(hwndBin);
+            }
+                break;
+            case ID_OPERATIONSWITHVECTOR_CALCULATESUM:
+            {
+                for (int i = 0; i < sizeof(vector)/sizeof(vector[0]); i = i + 1) {
+                    wchar_t m_reportFileName[256];
+                    swprintf_s(m_reportFileName, L"%d", vector[i]);
+                    SetWindowText(hWnd, m_reportFileName);
+                }
             }
                 break;
             case WM_PAINT:
