@@ -1,1 +1,0 @@
-Examples with processes, threads from practise.
