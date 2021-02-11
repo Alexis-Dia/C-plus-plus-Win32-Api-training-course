@@ -1,4 +1,4 @@
-# C-win-api-training-course
+# C++-Win32Api-training-course
 
 Для редактирования шаблона окна либо другого любого графического элемента, нужно:
 	1. Перейти во вкладку "Resource View"(Рядом со вкладкой "Solution Explorer").
@@ -8,7 +8,7 @@
 
 Lab4, Lab7, Lab8 - это лабы от Владислава с отчетами.
 Lab1.PractiseFromFirstSemmester.Part1 - это первая часть практики из лабораторных работ.
-PractiseFromFirstSemmester.Part2 - это второая часть пракики из лабораторных работ.
+PractiseFromFirstSemmester.Part2 - это второая часть практики из лабораторных работ.
 PreparationForExam - это самостоятельная подготовка экзаменационных задач на базе практических занятий с преподавателем.
 MyExamTask - задача из экзамена.
 	
