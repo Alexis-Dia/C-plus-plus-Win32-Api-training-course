@@ -1,4 +1,4 @@
-# C++-Win32Api-training-course
+# C++ Win32Api training-course
 
 <br>Для редактирования шаблона окна либо другого любого графического элемента, нужно:
 <br>
